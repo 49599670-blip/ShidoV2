@@ -1,0 +1,289 @@
+/* ==========================================
+   ESTILO.CSS - BASE COMPARTIDA DE TODO EL SITIO
+   Solo contiene lo que usan todas las páginas:
+   variables, reset, body, títulos, navbar (menu.jsp) y footer (pie.jsp).
+   Cada vista tiene su propio CSS en esta misma carpeta.
+   ========================================== */
+/* ==========================================
+   1. VARIABLES CSS Y CONFIGURACIÓN GLOBAL
+   ========================================== */
+:root {
+    --color-primario: #13302D;
+    --color-secundario: #2d6a4f;
+    --color-acento: #318654;
+    --color-fondo: #f8fafc;
+    --color-tarjeta: #ffffff;
+    --color-texto: #1e293b;
+    --color-texto-secundario: #64748b;
+    --color-borde: #e2e8f0;
+    --sombra-suave: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --sombra-elevada: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --transicion-suave: all 0.2s ease-in-out;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--color-fondo);
+    margin: 0;
+    padding: 0;
+    color: var(--color-texto);
+    line-height: 1.5;
+}
+
+/* ==========================================
+   2. TÍTULOS Y ENCABEZADOS
+   ========================================== */
+h1 {
+    color: var(--color-primario);
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin-top: 30px !important;
+    margin-bottom: 15px !important;
+    margin-left: 80px !important;
+}
+
+h2 {
+    color: var(--color-secundario);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px !important;
+    margin-bottom: 15px !important;
+    margin-left: 80px !important;
+}
+
+/* ==========================================
+   3. BARRA DE NAVEGACIÓN (HEADER)
+   ========================================== */
+nav, .navbar {
+    background-color: var(--color-primario);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    box-shadow: var(--sombra-suave);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.nav-logo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    white-space: nowrap;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transicion-suave);
+}
+
+.nav-links a:hover,
+.nav-links a.activo {
+    background-color: var(--color-secundario);
+    color: #ffffff;
+}
+
+.nav-links a.activo::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+/* ==========================================
+   4. PIE DE PÁGINA (FOOTER) CON 3 NIVELES DE COLOR Y BOTONES PÍLDORA
+   ========================================== */
+.footer {
+    --footer-ola-alto: 90px;
+    --footer-bloque-alto: 260px;
+    --footer-logo-alto: 240px;
+
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    margin-top: 0 !important;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* ---------- 1. NIVEL OLA Y ZONA DE LOGO ---------- */
+.footer-ola {
+    height: var(--footer-ola-alto);
+    overflow: hidden;
+    line-height: 0;
+}
+
+.footer-ola-track {
+    display: flex;
+    width: 200%;
+    animation: footer-ola 14s linear infinite;
+}
+
+.footer-ola-track svg {
+    flex: 0 0 50%;
+    width: 50%;
+    height: var(--footer-ola-alto);
+    display: block;
+}
+
+.footer-ola-track path {
+    fill: #275743;
+}
+
+.footer-brand {
+    position: relative;
+    height: var(--footer-bloque-alto);
+    background-color: #275743;
+}
+
+.footer-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: var(--footer-logo-alto);
+    width: auto;
+    max-width: 90%;
+    object-fit: contain;
+    margin: 0;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes footer-ola {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ---------- 2. NIVEL INTERMEDIO: NAVEGACIÓN Y BOTONES PÍLDORA ---------- */
+.footer-nav-container {
+    background-color: var(--color-primario); /* #13302D */
+    padding: 30px 20px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 36px;
+}
+
+.footer-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transicion-suave);
+}
+
+.footer-nav a:hover {
+    color: #52b788;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+/* Estilo de botones tipo cápsula / píldora */
+.footer-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.footer-btn-pill {
+    background-color: #0a1b1a; /* Fondo oscuro tipo píldora */
+    color: #ffffff;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-size: 0.90rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-btn-pill:hover {
+    background-color: #2d6a4f;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+.footer a:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+}
+
+/* ---------- 3. NIVEL OSCURO: BARRA INFERIOR DE COPYRIGHT ---------- */
+.footer-info,
+.footer-copyright {
+    background-color: #0a1b1a;
+    font-size: 0.875rem;
+    padding: 0 20px;
+}
+
+.footer-info {
+    color: #cbd5e1;
+    padding-top: 16px;
+    padding-bottom: 6px;
+}
+
+.footer-copyright {
+    color: #94a3b8;
+    font-weight: 500;
+    padding-bottom: 24px;
+}
+
+/* Respeta a quienes desactivan las animaciones */
+@media (prefers-reduced-motion: reduce) {
+    .footer-ola-track { animation: none; }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    .footer {
+        --footer-ola-alto: 60px;
+        --footer-bloque-alto: 200px;
+        --footer-logo-alto: 170px;
+    }
+}
